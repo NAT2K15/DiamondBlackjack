@@ -10,13 +10,25 @@ local blackjackGameInProgress = {}
 local blackjackGameData = {}
 
 function tryTakeChips(source,amount)
-    --returns true if taken chips succesfully
-    --returns false if doesn't have enough chips
-    return true
+    local src = source
+    local xPlayer = exports.money:getaccount(src)
+    local balcheck = xPlayer.amount - amount;
+    if(balcheck < 0 or balcheck == nil) then
+        TriggerClientEvent('chatMessage', source, "^5[Blackjack]^0 You do not have the betted amount in cash to play.")
+            return false
+        else
+        exports.money:updateaccount(source, {cash = xPlayer.amount - amount, bank = xPlayer.bank})
+        return true
+    
+end
 end
 
+
+
 function giveChips(source,amount)
-    --gives amount in chips to source
+    local xPlayer = exports.money:getaccount(source)
+
+    exports.money:updateaccount(source, {cash = xPlayer.amount + amount, bank = xPlayer.bank})
 end
 
 AddEventHandler('playerDropped', function (reason)
@@ -136,7 +148,7 @@ for i=0,31,1 do
             end
             if game_ready then
                 local gameId = math.random(1000,10000000)
-                print("generated gameId",gameId)
+                --print("generated gameId",gameId)
                 blackjackGameData[gameId] = {} --init game data
                 blackjackGameInProgress[gameId] = false
                 for k,v in pairs(players_ready) do 
@@ -230,7 +242,7 @@ for i=0,31,1 do
                                                 secondsWaited = secondsWaited + 0.1
                                                 ----print("response to stand or hit is still false")
                                             end
-                                            print("response received! [ok]")
+                                          --  print("response received! [ok]")
                                             if blackjackGameData[gameId][source][2][nextCardCount] == true then --if hit 
                                                 --print("response was hit")
                                                 nextCardCount = nextCardCount + 1
