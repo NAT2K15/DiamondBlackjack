@@ -1,5 +1,5 @@
 # Disclaimer 
-The script was not originally written by NAT2K15. This script's [Github Link](https://github.com/rubbertoe98/DiamondBlackjack) original author is to be credited. To make the code compatible with his money script, he modified it.
+The script was not originally written by NAT2K15. This script's [Github Link](https://github.com/rubbertoe98/DiamondBlackjack) original author is to be credited. To make the code compatible with his money script, NAT2K15 simply modified it.
 
 # DiamondBlackjack
 Hello everyone! I've spent the past 2 months working on blackjack in a style as similar to GTA:O as possible and I've decided that all servers should enjoy this so I'm releasing it!
